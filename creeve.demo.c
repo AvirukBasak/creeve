@@ -2,9 +2,6 @@
  * WARNING: DEMO CREEVE CODE, WILL NOT COMPILE
  *
  */
-
-/*
-
 namespace MySpace
 {
     class Cls
@@ -37,13 +34,14 @@ namespace MySpace
     }
 }
 
-MySpace::Cls cl1 = new MySpace::Cls ();
-int x = cl1.foo ();
+int main()
+{
+    MySpace::Cls cl1 = new MySpace::Cls ();
+    int x = cl1.foo ();
 
-// without new
-MySpace::Cls cl1 = MySpace::Cls ();
-
-*/
+    // without new
+    MySpace::Cls cl1 = MySpace::Cls ();
+}
 
 // -----------------------------------------
 
@@ -113,17 +111,20 @@ void MySpace_Cls_bar (MySpace_Cls *this_ptr)
     // code
 }
 
-// default constructor call with new
-MySpace_Cls *cl1_ptr = malloc (sizeof (MySpace_Cls) * 1);
-if (cl1_ptr == NULL) {
-    abort();
+int main()
+{
+    // default constructor call with new
+    MySpace_Cls *cl1_ptr = (MySpace_Cls *) malloc (sizeof (MySpace_Cls) * 1);
+    if (cl1_ptr == NULL) {
+        abort();
+    }
+    MySpace_Cls cl1 = *cl1_ptr;
+    MySpace_Cls_default_constructor (&cl1);
+
+    int x = MySpace_Cls_foo (&cl1);
+
+    // without new
+    MySpace_Cls cl2;
+    MySpace_Cls *cl2_ptr = &cl2;
+    MySpace_Cls_default_constructor (&cl1);
 }
-MySpace_Cls cl1 = *cl1_ptr;
-MySpace_Cls_default_constructor (&cl1);
-
-int x = MySpace_Cls_foo (&cl1);
-
-// without new
-MySpace_Cls cl2;
-MySpace_Cls *cl2_ptr = &cl2;
-MySpace_Cls_default_constructor (&cl1);
