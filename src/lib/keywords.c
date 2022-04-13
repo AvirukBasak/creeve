@@ -3,5 +3,6 @@
 const string Keywords [KEYWORD_COUNT] = {
     "namespace",
     "class",
-    "this"
+    "this",
+    "new"
 };
