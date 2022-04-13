@@ -11,21 +11,28 @@ int main (int argsc, string argsv[])
         outputs_err_exit ("no arguments provided", E_CLIARGS);
     }
 
-    File *files_array = NULL;
+    // create the llist data structure
+    File file_node = (File) malloc (1 * sizeof (struct File));
+    file_node->ptr = NULL;
+    file_node->path = NULL;
+    file_node->next = NULL;
+
+    File new_file_node = NULL;
 
     /* going through list of file paths in argsv
      * the aim is to organise file paths and pointers in one struct
      */
-    for (udword i = 1; i < argsc - 1; i++) {
-        files_array = (File *) realloc (files_array, i * sizeof (File));
-        if (files_array == NULL) {
+    new_file_node = file_node;
+    for (udword i = 1; i < argsc; i++) {
+        if (new_file_node == NULL) {
             outputs_err_exit ("null pointer error", E_NULLPTR);
         }
         // we are able to assign the arguments to the File struct as argsv is not popped till main pop (program's end)
-        files_array [i - 1]->path = argsv[i];
-        files_array [i - 1]->ptr = fopen (argsv[i], "rb");
+        new_file_node->path = argsv[i];
+        new_file_node->ptr = fopen (argsv[i], "rb");
+        new_file_node->next = NULL;
         // if file ptr is null
-        if (files_array [i - 1]->ptr == NULL) {
+        if (new_file_node->ptr == NULL) {
             // TODO: abstract out variable error messages
             string err_msg = "couldn't read ";
             // allocate a new string to hold the full err msg
@@ -39,14 +46,23 @@ int main (int argsc, string argsv[])
             // good practice to always free, never executed
             free (err_msg2);
         }
+        // do not create new node if this is the last file path argument
+        if (i == argsc - 1)
+            break;
+        new_file_node->next = (File) malloc (1 * sizeof (struct File));
+        new_file_node = new_file_node->next;
+        new_file_node->ptr = NULL;
+        new_file_node->path = NULL;
+        new_file_node->next = NULL;
     }
 
     /* this loop goes through each file, and runs the compiler on that file
      * generates c code and writes to a .c file
      */
-    for (udword i = 0; i < argsc - 2; i++) {
-        string path = files_array[i]->path;
-        FILE *ptr = files_array[i]->ptr;
+    new_file_node = file_node;
+    while (new_file_node != NULL) {
+        string path = new_file_node->path;
+        FILE *ptr = new_file_node->ptr;
 
         // gets c code from crv code by compilation
         string compiled_c_code = compiler_compile (ptr);
@@ -54,7 +70,9 @@ int main (int argsc, string argsv[])
         // gets file path, and file basename without the extension
         string c_code_path = fs_get_file_dirpath (path);
         string c_code_filename = fs_get_file_basename_without_ext (path);
-        int buffer_space = 16;
+
+        // to hold excess bytes in case of an overflow
+        int buffer_space = 32;
  
         // same as: string c_code_fullpath = new string (c_code_path + "/" + c_code_filename + ".c");
         string c_code_fullpath = malloc (strlen (c_code_path) + strlen (c_code_filename) + strlen (".c") + buffer_space);
@@ -73,6 +91,8 @@ int main (int argsc, string argsv[])
         free (c_code_path);
         free (c_code_filename);
         free (c_code_fullpath);
+
+        new_file_node = new_file_node->next;
     }
 
     return 0;

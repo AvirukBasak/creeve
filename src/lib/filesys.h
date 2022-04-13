@@ -17,9 +17,11 @@
 
     # define FILESYS_H 1
 
-    typedef struct {
+    // linked list to hold data of files
+    typedef struct File {
         FILE *ptr;
         string path;
+        struct File *next;
     } *File;
 
     /**
