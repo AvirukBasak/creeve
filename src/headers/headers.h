@@ -11,6 +11,8 @@
     # define true                ( 1 )
     # define false               ( 0 )
 
+    # define BUFFER_SIZE         ( 16 )
+
     typedef int8_t byte;
     typedef int16_t word;
     typedef int32_t dword;
