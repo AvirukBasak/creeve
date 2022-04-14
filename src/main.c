@@ -36,7 +36,7 @@ int main (int argsc, string argsv[])
             // TODO: abstract out variable error messages
             string err_msg = "couldn't read ";
             // allocate a new string to hold the full err msg
-            char *err_msg2 = malloc (sizeof (char) * (strlen (err_msg) + strlen (argsv [i])));
+            string err_msg2 = (string) malloc (sizeof (char) * (strlen (err_msg) + strlen (argsv [i])));
             // copy the err msg to new string
             strcpy (err_msg2, err_msg);
             // concat file path to err msg
@@ -70,12 +70,9 @@ int main (int argsc, string argsv[])
         // gets file path, and file basename without the extension
         string c_code_path = fs_get_file_dirpath (path);
         string c_code_filename = fs_get_file_basename_without_ext (path);
-
-        // to hold excess bytes in case of an overflow
-        int buffer_space = 32;
  
         // same as: string c_code_fullpath = new string (c_code_path + "/" + c_code_filename + ".c");
-        string c_code_fullpath = malloc (strlen (c_code_path) + strlen (c_code_filename) + strlen (".c") + buffer_space);
+        string c_code_fullpath = (string) malloc (strlen (c_code_path) + strlen (c_code_filename) + strlen (".c") + BUFFER_SIZE);
         strcpy (c_code_fullpath, c_code_path);
         strcat (c_code_fullpath, "/");
         strcat (c_code_fullpath, c_code_filename);

@@ -12,11 +12,12 @@ string fs_get_file_dirpath (string path)
     string basename;
     for (i = strlen (path) - 1; i >= 0; i--) {
         if ((sys_is_Windows() && path[i] == '\\') || (sys_is_Unix() && path[i] == '/')) {
+            i++;
             break;
         }
     }
     size_t size = strlen (&path[strlen (path) - i]);
-    basename = malloc (sizeof (char) * size + BUFFER_SIZE);
+    basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
     if (basename == NULL) {
         outputs_err_exit ("null pointer error", E_NULLPTR);
     }
@@ -40,7 +41,7 @@ string fs_get_file_basename (string path)
         }
     }
     size_t size = strlen (&path[i]);
-    basename = malloc (sizeof (char) * size + BUFFER_SIZE);
+    basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
     if (basename == NULL) {
         outputs_err_exit ("null pointer error", E_NULLPTR);
     }
@@ -70,7 +71,7 @@ string fs_get_file_basename_without_ext (string path)
         }
     }
     size_t size = strlen (&path[j - i + 1]);
-    basename = malloc (sizeof (char) * size + BUFFER_SIZE);
+    basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
     if (basename == NULL) {
         outputs_err_exit ("null pointer error", E_NULLPTR);
     }

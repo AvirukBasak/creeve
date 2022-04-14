@@ -11,7 +11,8 @@
     # define true                ( 1 )
     # define false               ( 0 )
 
-    # define BUFFER_SIZE         ( 16 )
+    // used to cushion buffer overflows
+    # define BUFFER_SIZE         ( 32 )
 
     typedef int8_t byte;
     typedef int16_t word;
