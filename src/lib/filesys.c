@@ -66,7 +66,7 @@ string fs_get_file_basename_without_ext (string path)
         }
     }
     for (j = strlen (path) - 1; j >= 0; j--) {
-        if (path[i] == '.') {
+        if (path[j] == '.') {
             break;
         }
     }

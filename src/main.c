@@ -89,6 +89,12 @@ int main (int argsc, string argsv[])
         free (c_code_filename);
         free (c_code_fullpath);
 
+        c_file_ptr = NULL;
+        compiled_c_code = NULL;
+        c_code_path = NULL;
+        c_code_filename = NULL;
+        c_code_fullpath = NULL;
+
         new_file_node = new_file_node->next;
     }
 
