@@ -2,6 +2,7 @@
  * WARNING: DEMO CREEVE CODE, WILL NOT COMPILE
  *
  */
+
 namespace MySpace
 {
     class Cls
@@ -24,7 +25,7 @@ namespace MySpace
         int foo ()
         {
             this.member = 5;
-            this.bar ();
+            this.bar();
             return 0;
         }
         void bar ()
@@ -36,11 +37,11 @@ namespace MySpace
 
 int main()
 {
-    MySpace::Cls cl1 = new MySpace::Cls ();
+    MySpace::Cls cl1 = new MySpace::Cls();
     int x = cl1.foo ();
 
     // without new
-    MySpace::Cls cl1 = MySpace::Cls ();
+    MySpace::Cls cl1 = MySpace::Cls();
 }
 
 // -----------------------------------------
@@ -56,59 +57,65 @@ typedef struct MySpace_Cls
     // more stuff
 } MySpace_Cls;
 
-void MySpace_Cls_default_constructor (MySpace_Cls *this_ptr);
-void MySpace_Cls_param_constructor (MySpace_Cls *this_ptr, int x);
-void MySpace_Cls_destructor (MySpace_Cls *this_ptr);
-int MySpace_Cls_foo (MySpace_Cls *this_ptr);
-void MySpace_Cls_bar (MySpace_Cls *this_ptr);
+void MySpace_Cls_default_constructor (MySpace_Cls *this);
+void MySpace_Cls_param_constructor (MySpace_Cls *this, int x);
+void MySpace_Cls_destructor (MySpace_Cls *this);
+int MySpace_Cls_foo (MySpace_Cls *this);
+void MySpace_Cls_bar (MySpace_Cls *this);
 
-void MySpace_Cls_default_constructor (MySpace_Cls *this_ptr)
+void MySpace_Cls_default_constructor (MySpace_Cls *this)
 {
-    if (this_ptr == NULL) {
+    if (this == NULL) {
         abort();
     }
-    MySpace_Cls this = *this_ptr;
+
     // code
+
 }
 
-void MySpace_Cls_param_constructor (MySpace_Cls *this_ptr, int x)
+void MySpace_Cls_param_constructor (MySpace_Cls *this, int x)
 {
-    if (this_ptr == NULL) {
+    if (this == NULL) {
         abort();
     }
-    MySpace_Cls this = *this_ptr;
-    // code ↓
-    this.member = x;
+
+    // code: this.member will be converted to this->member
+    this->member = x;
+
 }
 
-void MySpace_Cls_destructor (MySpace_Cls *this_ptr)
+void MySpace_Cls_destructor (MySpace_Cls *this)
 {
-    if (this_ptr == NULL) {
+    if (this == NULL) {
         abort();
     }
-    MySpace_Cls this = *this_ptr;
+
     // code
-    free (this_ptr);
+
+    free (this);
 }
 
-int MySpace_Cls_foo (MySpace_Cls *this_ptr)
+int MySpace_Cls_foo (MySpace_Cls *this)
 {
-    if (this_ptr == NULL) {
+    if (this == NULL) {
         abort();
     }
-    MySpace_Cls this = *this_ptr;
-    // code ↓
-    this.member = 5;
-    MySpace_Cls_bar (&this);
+
+    // code: this.member will be converted to this->member
+    this->member = 5;
+    MySpace_Cls_bar (this);
+
     return 0;
 }
 
-void MySpace_Cls_bar (MySpace_Cls *this_ptr)
+void MySpace_Cls_bar (MySpace_Cls *this)
 {
-    if (this_ptr == NULL) {
+    if (this == NULL) {
         abort();
     }
+
     // code
+
 }
 
 int main()
@@ -118,6 +125,7 @@ int main()
     if (cl1_ptr == NULL) {
         abort();
     }
+    // this line allows use of cl2.member syntax, else one must use cl1_ptr->member
     MySpace_Cls cl1 = *cl1_ptr;
     MySpace_Cls_default_constructor (&cl1);
 
@@ -125,6 +133,5 @@ int main()
 
     // without new
     MySpace_Cls cl2;
-    MySpace_Cls *cl2_ptr = &cl2;
-    MySpace_Cls_default_constructor (&cl1);
+    MySpace_Cls_default_constructor (&cl2);
 }
