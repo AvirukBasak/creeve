@@ -17,6 +17,15 @@
 
     # define TOKENIZER_H 1
 
+    typedef struct Tokens {
+        
+    } Tokens;
+    
+    // match_operator
+    // match_symbol
+    // match_keyword
+    // match_identifier
+
     /**
      * @brief Returns an array of strings containing tokens
      *

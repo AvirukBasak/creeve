@@ -1,4 +1,5 @@
 # include "tokenizer.h"
+# include "errhandle.h"
 
 /**
  * @brief Returns an array of strings containing tokens
@@ -12,4 +13,15 @@
 string *tokenizer_tokenize (FILE *ptr)
 {
     return NULL;
+}
+
+void tokenizer_freetokens (string *tokens, uqword tokens_count)
+{
+    uqword i;
+    err_nullptr (tokens);
+    for (i = 0; i < tokens_count; i++) {
+        err_nullptr (tokens[i]);
+        free (tokens[i]);
+    }
+    free (tokens);
 }
