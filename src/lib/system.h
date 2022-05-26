@@ -22,41 +22,41 @@
      *
      * @return bool True if Windows
      */
-    bool sys_is_Windows ();
+    bool sys_is_Windows();
 
      /**
      * @brief Returns true if compilation platform is Linux
      *
      * @return bool True if Linux
      */
-    bool sys_is_Linux ();
+    bool sys_is_Linux();
 
     /**
      * @brief Returns true if compilation platform is FreeBSD
      *
      * @return bool True if FreeBSD
      */
-    bool sys_is_FreeBSD ();
+    bool sys_is_FreeBSD();
 
     /**
      * @brief Returns true if compilation platform is Android
      *
      * @return bool True if Android
      */
-    bool sys_is_android ();
+    bool sys_is_android();
 
      /**
      * @brief Returns true if compilation platform is macOS
      *
      * @return bool True if macOS
      */
-    bool sys_is_macOS ();
+    bool sys_is_macOS();
 
      /**
      * @brief Returns true if compilation platform is Unix
      *
      * @return bool True if Unix
      */
-    bool sys_is_Unix ();
+    bool sys_is_Unix();
 
 # endif
