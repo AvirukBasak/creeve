@@ -1,4 +1,7 @@
 # include "filesys.h"
+# include "outputs.h"
+# include "system.h"
+# include "errhandle.h"
 
 /**
  * @brief For a file path = "dira/dirb/dirc/file.xy", the function returns "dira/dirb/dirc/"
@@ -8,7 +11,7 @@
  */
 string fs_get_file_dirpath (string path)
 {
-    int i;
+    uqword i, size;
     string basename;
     for (i = strlen (path) - 1; i >= 0; i--) {
         if ((sys_is_Windows() && path[i] == '\\') || (sys_is_Unix() && path[i] == '/')) {
@@ -16,11 +19,9 @@ string fs_get_file_dirpath (string path)
             break;
         }
     }
-    size_t size = strlen (&path[strlen (path) - i]);
+    size = strlen (&path[strlen (path) - i]);
     basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
-    if (basename == NULL) {
-        outputs_err_exit ("null pointer error", E_NULLPTR);
-    }
+    err_nullptr (basename);
     strncpy (basename, path, size);
     return basename;
 }
@@ -33,18 +34,16 @@ string fs_get_file_dirpath (string path)
  */
 string fs_get_file_basename (string path)
 {
-    int i;
+    uqword i, size;
     string basename;
     for (i = strlen (path) - 1; i >= 0; i--) {
         if ((sys_is_Windows() && path[i] == '\\') || (sys_is_Unix() && path[i] == '/')) {
             break;
         }
     }
-    size_t size = strlen (&path[i]);
+    size = strlen (&path[i]);
     basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
-    if (basename == NULL) {
-        outputs_err_exit ("null pointer error", E_NULLPTR);
-    }
+    err_nullptr (basename);
     strcpy (basename, &path[i]);
     return basename;
 }
@@ -57,7 +56,7 @@ string fs_get_file_basename (string path)
  */
 string fs_get_file_basename_without_ext (string path)
 {
-    int i, j;
+    uqword i, j, size;
     string basename;
     for (i = strlen (path) - 1; i >= 0; i--) {
         if ((sys_is_Windows() && path[i] == '\\') || (sys_is_Unix() && path[i] == '/')) {
@@ -70,11 +69,9 @@ string fs_get_file_basename_without_ext (string path)
             break;
         }
     }
-    size_t size = strlen (&path[j - i + 1]);
+    size = strlen (&path[j - i + 1]);
     basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
-    if (basename == NULL) {
-        outputs_err_exit ("null pointer error", E_NULLPTR);
-    }
+    err_nullptr (basename);
     strncpy (basename, &path[i], size);
     return basename;
 }

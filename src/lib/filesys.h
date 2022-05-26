@@ -13,9 +13,6 @@
 # include "../headers/headers.h"
 # include "../headers/errcodes.h"
 
-# include "outputs.h"
-# include "system.h"
-
 # ifndef FILESYS_H
 
     # define FILESYS_H 1
