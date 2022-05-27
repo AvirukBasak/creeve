@@ -69,7 +69,7 @@ string fs_get_file_basename_without_ext (string path)
             break;
         }
     }
-    size = strlen (&path[j - i + 1]);
+    size = j - i;
     basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
     err_nullptr (basename);
     strncpy (basename, &path[i], size);
