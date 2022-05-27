@@ -2,9 +2,10 @@ NULL =
 TAB  = $(NULL)    $(NULL)
 
 # aliased options
-all: build
+all: b db
 o: options
 d: debug
+db: debug_build
 b: build
 r: run
 c: clean
@@ -40,10 +41,12 @@ GOTO_HELL = 2> /dev/null
 clscr:
 	clear
 
-# creates debug build and launches in gdb
-debug: clscr
+debug_build:
 	mkdir -p $(BIN_DIR)
 	$(CC) $(DBG_FLAGS) $(SRC_PATH) -o $(DBG_PATH)
+
+# creates debug build and launches in gdb
+debug: clscr debug_build
 	$(DBG) $(DBG_PATH)
 
 # compile source to bin path
