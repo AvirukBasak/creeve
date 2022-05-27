@@ -88,7 +88,7 @@ clean:
 	@touch $(SRC_DIR)/test.elf
 	rm -r $(BIN_DIR)
 	rm -r $(SRC_DIR)/testing
-	rm -r $(SRC_DIR)/test.elf
+	rm $(SRC_DIR)/test.elf
 
 # force clear binaries
 cleanf:
