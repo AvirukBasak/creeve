@@ -27,7 +27,7 @@ CC        = gcc
 DBG       = gdb -q
 DBG_FLAGS = -Wall -D DEBUG="(1)" -g3 -ggdb
 REL_FLAGS = -Wall -Ofast
-TST_FLAGS = -Wall -D TEST="(1)"
+TST_FLAGS = -Wall -D TEST="(1)" -g3 -ggdb
 
 SRC_DIR   = ./src
 BIN_DIR   = ./bin
