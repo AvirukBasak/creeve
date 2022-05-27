@@ -71,7 +71,7 @@ bool test_filesys()
 
 int main (int argsc, string argsv[])
 {
-    bool test_success = true;
+    bool test_success = false;
     test_success = test_filesys();
     if (!test_success) {
         printf ("Test FAILED\n");
