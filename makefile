@@ -49,7 +49,7 @@ clscr:
 	clear
 
 debug_build:
-	mkdir -p $(BIN_DIR)
+	@mkdir -p $(BIN_DIR)
 	$(CC) $(DBG_FLAGS) $(SRC_PATH) -o $(DBG_PATH)
 
 # creates debug build and launches in gdb
@@ -58,7 +58,7 @@ debug: clscr debug_build
 
 # compile source to bin path
 build:
-	mkdir -p $(BIN_DIR)
+	@mkdir -p $(BIN_DIR)
 	$(CC) $(REL_FLAGS) $(SRC_PATH) -o $(REL_PATH)
 
 argument_provided:
@@ -72,13 +72,13 @@ run: argument_provided
 	@$(REL_PATH) $(arg)
 
 test_build:
-	mkdir -p $(SRC_DIR)/testing
-	$(CC) $(TST_FLAGS) $(LIB_PATH) $(SRC_DIR)/tests.c -o $(SRC_DIR)/test.elf
+	@mkdir -p $(SRC_DIR)/testing
+	@$(CC) $(TST_FLAGS) $(LIB_PATH) $(SRC_DIR)/tests.c -o $(SRC_DIR)/test.elf
 
 test: test_build
 	@$(SRC_DIR)/test.elf
-	rm $(SRC_DIR)/test.elf
-	rm -rf $(SRC_DIR)/testing
+	@rm $(SRC_DIR)/test.elf
+	@rm -rf $(SRC_DIR)/testing
 
 # clear binaries
 clean:
