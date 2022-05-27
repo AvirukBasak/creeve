@@ -27,11 +27,13 @@ CC        = gcc
 DBG       = gdb -q
 DBG_FLAGS = -Wall -D DEBUG="(1)" -g3 -ggdb
 REL_FLAGS = -Wall -Ofast
+TST_FLAGS = -Wall -D TEST="(1)"
 
 SRC_DIR   = ./src
 BIN_DIR   = ./bin
 
-SRC_PATH  = $(SRC_DIR)/lib/*.c $(SRC_DIR)/*.c
+LIB_PATH  = $(SRC_DIR)/lib/*.c
+SRC_PATH  = $(LIB_PATH) $(SRC_DIR)/main.c
 DBG_PATH  = $(BIN_DIR)/dbg-creeve
 REL_PATH  = $(BIN_DIR)/creeve
 
@@ -63,6 +65,13 @@ endif
 # run source
 run: argument_provided
 	@$(REL_PATH) $(arg)
+
+test:
+	mkdir -p $(SRC_DIR)/testing
+	$(CC) $(TST_FLAGS) $(LIB_PATH) $(SRC_DIR)/tests.c -o $(SRC_DIR)/test.elf
+	@$(SRC_DIR)/test.elf
+	rm @$(SRC_DIR)/test.elf
+	rm $(SRC_DIR)/testing
 
 # clear binaries
 clean:
