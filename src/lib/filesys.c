@@ -44,7 +44,7 @@ string fs_get_file_basename (string path)
     size = strlen (&path[i]);
     basename = (string) malloc (sizeof (char) * size + BUFFER_SIZE);
     err_nullptr (basename);
-    strcpy (basename, &path[i]);
+    strcpy (basename, &path[i+1]);
     return basename;
 }
 
