@@ -10,6 +10,8 @@ b: build
 r: run
 c: clean
 cf: cleanf
+t: test
+tb: test_build
 
 # options for make
 options:
@@ -66,9 +68,11 @@ endif
 run: argument_provided
 	@$(REL_PATH) $(arg)
 
-test:
+test_build:
 	mkdir -p $(SRC_DIR)/testing
 	$(CC) $(TST_FLAGS) $(LIB_PATH) $(SRC_DIR)/tests.c -o $(SRC_DIR)/test.elf
+
+test: test_build
 	@$(SRC_DIR)/test.elf
 	rm $(SRC_DIR)/test.elf
 	rm -rf $(SRC_DIR)/testing
