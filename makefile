@@ -18,10 +18,13 @@ options:
 	$(info USAGE:)
 	$(info $(TAB)make  o | options)
 	$(info $(TAB)make  d | debug)
+	$(info $(TAB)make db | debug_build)
 	$(info $(TAB)make  b | build)
 	$(info $(TAB)make  r | run arg="[argument]")
 	$(info $(TAB)make  c | clean)
 	$(info $(TAB)make cf | cleanf)
+	$(info $(TAB)make  t | test)
+	$(info $(TAB)make tb | test_build)
 	@exit
 
 # required stuff
