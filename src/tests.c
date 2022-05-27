@@ -12,8 +12,8 @@
 void mk_dummyfiles (udword count)
 {
     udword i;
-    if (count > 50) {
-        count = 50;
+    if (count > 100) {
+        count = 100;
     }
     for (i = 1; i <= count; i++) {
         string halfpath = "src/testing/file";
