@@ -47,19 +47,19 @@ bool test_filesys()
     };
     string fdp1 = fs_get_file_dirpath (filepaths[0]);
     if (strcmp (fdp1, "src/testing/")) {
-        fprintf (stderr, "fdp1: %s, expect %s\n", fdp1, "src/testing/");
+        fprintf (stderr, "test: fdp1: %s, expect %s\n", fdp1, "src/testing/");
         flag = false;
     }
     free (fdp1);
     string fbn2 = fs_get_file_basename (filepaths[1]);
     if (strcmp (fbn2, "file2.crv")) {
-        fprintf (stderr, "fbn2: %s, expect %s\n", fbn2, "file2.crv");
+        fprintf (stderr, "test: fbn2: %s, expect %s\n", fbn2, "file2.crv");
         flag = false;
     }
     free (fbn2);
     string fbnx3 = fs_get_file_basename_without_ext (filepaths[2]);
     if (strcmp (fbnx3, "file3")) {
-        fprintf (stderr, "fbnx3: %s, expect %s\n", fbnx3, "file3");
+        fprintf (stderr, "test: fbnx3: %s, expect %s\n", fbnx3, "file3");
         flag = false;
     }
     free (fbnx3);
