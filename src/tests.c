@@ -15,8 +15,8 @@ void mk_dummyfiles (udword count)
     if (count > 50) {
         count = 50;
     }
-    for (i = 0; i < count; i++) {
-        string halfpath = "testing/file";
+    for (i = 1; i <= count; i++) {
+        string halfpath = "src/testing/file";
         char filenum[4] = {0};
         sprintf (filenum, "%d", i);
         string ext = ".crv";
@@ -30,7 +30,7 @@ void mk_dummyfiles (udword count)
         strcat (filepath, ext);
         FILE *file = fopen (filepath, "wb");
         free (filepath);
-        fprintf (file, "%s", "");
+        fprintf (file, "%s", "garbage");
         fclose (file);
     }
 }
@@ -45,9 +45,9 @@ int main (int argsc, string argsv[])
 {
     mk_dummyfiles (3);
     string filepaths[3] = {
-        "testing/file1.crv",
-        "testing/file2.crv",
-        "testing/file3.crv"
+        "src/testing/file1.crv",
+        "src/testing/file2.crv",
+        "src/testing/file3.crv"
     };
     test_filesys (3, filepaths);
     return 0;

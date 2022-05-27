@@ -70,8 +70,8 @@ test:
 	mkdir -p $(SRC_DIR)/testing
 	$(CC) $(TST_FLAGS) $(LIB_PATH) $(SRC_DIR)/tests.c -o $(SRC_DIR)/test.elf
 	@$(SRC_DIR)/test.elf
-	rm @$(SRC_DIR)/test.elf
-	rm $(SRC_DIR)/testing
+	rm $(SRC_DIR)/test.elf
+	rm -rf $(SRC_DIR)/testing
 
 # clear binaries
 clean:
