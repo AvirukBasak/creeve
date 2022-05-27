@@ -1,5 +1,5 @@
 # Creeve
-Compiler for Creeve - the object oriented c language
+Compiler for Creeve - the object oriented C language
 
 Creeve is a passion project meant to generate C code from an object oriented code
 that looks like C++.
