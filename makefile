@@ -82,15 +82,17 @@ test: test_build
 
 # clear binaries
 clean:
-	@if git status --porcelain=v1 2> /dev/null | wc -l  > /dev/null; then echo 'error: please commit changes before cleaning'; exit 1; fi
-	mkdir -p $(BIN_DIR)
+	@if [ "`git status --porcelain=v1 2> /dev/null | wc -l`" -gt 0 ]; then echo 'error: please commit changes before cleaning'; exit 1; fi
+	@mkdir -p $(BIN_DIR)
+	@mkdir -p $(SRC_DIR)/testing
+	@touch $(SRC_DIR)/test.elf
 	rm -r $(BIN_DIR)
 	rm -r $(SRC_DIR)/testing
 	rm -r $(SRC_DIR)/test.elf
 
 # force clear binaries
 cleanf:
-	@if git status --porcelain=v1 2> /dev/null | wc -l > /dev/null; then echo 'error: please commit changes before cleaning'; exit 1; fi
+	@if [ "`git status --porcelain=v1 2> /dev/null | wc -l`" -gt 0 ]; then echo 'error: please commit changes before cleaning'; exit 1; fi
 	rm -rf $(BIN_DIR)
 	rm -rf $(SRC_DIR)/testing
 	rm -f $(SRC_DIR)/test.elf
